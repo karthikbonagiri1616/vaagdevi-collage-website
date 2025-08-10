@@ -410,6 +410,68 @@ body {
     text-align: center;
   }
 }
+/* Make header layout flexible */
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;  /* important for responsiveness */
+  gap: 1rem;
+  padding: 10px 0;
+}
+
+/* Logo container: keep logo image and text aligned */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Logo image size */
+.logo img {
+  max-width: 100px;
+  height: auto;
+  border-radius: 8px; /* optional */
+}
+
+/* College name text */
+.college-name h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.college-name p {
+  font-size: 0.9rem;
+  margin: 2px 0 0 0;
+  color: #555;
+}
+
+/* On smaller screens (mobile) */
+@media (max-width: 600px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .logo {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .logo img {
+    max-width: 80px;
+  }
+
+  .college-name h1 {
+    font-size: 1.2rem;
+  }
+
+  .college-name p {
+    font-size: 0.8rem;
+  }
+}
+
 
 
 

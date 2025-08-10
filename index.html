@@ -3,11 +3,357 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vaagdevi Junior & Degree College<br>Boath, Dist: Adilabad</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <title>Vaagdevi Junior & Degree College - Boath, Dist: Adilabad</title>
+  <style>
+    /* Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      color: #222;
+      line-height: 1.5;
+    }
+    a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+    a:hover, a:focus {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header */
+    .site-header {
+      background: #004b87;
+      color: #fff;
+      padding: 1rem 0;
+      border-bottom: 4px solid #0077cc;
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .logo img {
+      height: 60px;
+      border-radius: 8px;
+    }
+    .college-name h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      line-height: 1.2;
+    }
+    .college-name p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #cfdbe9;
+    }
+
+    /* Navigation */
+    .main-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.2rem;
+      margin: 0;
+      padding: 0;
+    }
+    .main-nav a {
+      color: #a9d1ff;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+      padding: 0.3rem 0.5rem;
+      display: inline-block;
+    }
+    .main-nav a:hover,
+    .main-nav a:focus {
+      color: #fff;
+    }
+
+    /* Nav toggle button */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      margin-left: auto;
+    }
+    .nav-toggle .hamburger,
+    .nav-toggle .hamburger::before,
+    .nav-toggle .hamburger::after {
+      display: block;
+      background-color: #a9d1ff;
+      height: 3px;
+      width: 25px;
+      border-radius: 2px;
+      position: relative;
+      transition: all 0.3s ease-in-out;
+    }
+    .nav-toggle .hamburger::before,
+    .nav-toggle .hamburger::after {
+      content: "";
+      position: absolute;
+      left: 0;
+    }
+    .nav-toggle .hamburger::before {
+      top: -8px;
+    }
+    .nav-toggle .hamburger::after {
+      top: 8px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      background: #e9f0fa;
+      padding: 2rem 1.5rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    }
+    .hero-content {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .hero-content .text {
+      flex: 1;
+      min-width: 250px;
+    }
+    .hero-content .image {
+      flex: 1;
+      min-width: 250px;
+    }
+    .hero-content img {
+      width: 100%;
+      border-radius: 8px;
+      height: 300px;
+      object-fit: cover;
+    }
+    .hero-content h2 {
+      margin-top: 0;
+    }
+
+    /* Content Sections */
+    .content-section {
+      background: #fff;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    }
+    .content-section h3 {
+      margin-top: 0;
+    }
+
+    /* Program Grid */
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .program-card {
+      background: #0077cc;
+      color: #fff;
+      padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgb(0 0 0 / 0.2);
+    }
+    .program-card h2 {
+      margin-top: 0;
+    }
+
+    /* Faculty Grid */
+    .faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .faculty-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .faculty-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+    .faculty-card h4 {
+      margin: 0.5rem 0 0.3rem;
+      font-size: 1.1rem;
+      color: #333;
+    }
+    .faculty-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.7rem;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgb(0 0 0 / 0.15);
+    }
+
+    /* Notice Board */
+    aside.program-content {
+      background: #d9e8ff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+      margin-bottom: 2rem;
+    }
+    aside.program-content h4 {
+      margin-top: 0;
+    }
+    aside.program-content ul {
+      list-style: disc inside;
+      margin: 0;
+      padding-left: 1rem;
+      white-space: nowrap;
+    }
+    aside.program-content ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Contact Form */
+    .contact-section form {
+      max-width: 450px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-section label {
+      font-weight: 600;
+    }
+    .contact-section input, .contact-section textarea {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+      resize: vertical;
+    }
+    .contact-section button {
+      background: #0077cc;
+      border: none;
+      color: white;
+      font-weight: 700;
+      padding: 0.7rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .contact-section button:hover, .contact-section button:focus {
+      background: #005999;
+    }
+    .form-result {
+      margin-top: 1rem;
+      font-weight: 600;
+      color: green;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: #004b87;
+      color: #cfdbe9;
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 700px) {
+      /* Stack header items */
+      .header-inner {
+        flex-direction: column;
+        align-items: center;
+      }
+      /* Show toggle button */
+      .nav-toggle {
+        display: block;
+      }
+      /* Hide nav by default */
+      .main-nav {
+        display: none;
+        width: 100%;
+        margin-top: 1rem;
+      }
+      /* Show nav when active */
+      .main-nav.active {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #004b87;
+        padding: 1rem;
+        border-radius: 8px;
+      }
+      .main-nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .main-nav a {
+        font-size: 1.1rem;
+        color: #d0e4ff;
+        padding: 0.3rem 0.5rem;
+      }
+      .main-nav a:hover,
+      .main-nav a:focus {
+        color: #fff;
+      }
+
+      /* Hero image smaller */
+      .hero-content img {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-content .text, .hero-content .image {
+        min-width: 100%;
+      }
+    }
+
+  </style>
 </head>
 <body>
-	<header class="site-header">
+
+<header class="site-header">
   <div class="container header-inner">
     <div class="logo">
       <img src="assets/logo.jpg" alt="Vaagdevi College Logo" />
@@ -18,11 +364,11 @@
     </div>
 
     <!-- Mobile Nav Toggle Button -->
-    <button class="nav-toggle" aria-label="Toggle navigation">
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
       <span class="hamburger"></span>
     </button>
 
-    <nav class="main-nav">
+    <nav class="main-nav" id="primary-navigation">
       <ul>
         <li><a href="#home" class="nav-link">Home</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
@@ -35,227 +381,216 @@
   </div>
 </header>
 
+<main class="container">
 
-
-
-  <main class="container">
-
-   <section id="home" class="hero-section">
-  <div class="hero-content">
-    <div class="text">
-      <h2>Welcome to Vaagdevi Junior & Degree College</h2>
-      <p>Quality education, value-based learning. We offer Inter and UG courses, Defence training and coaching.</p>
+  <section id="home" class="hero-section">
+    <div class="hero-content">
+      <div class="text">
+        <h2>Welcome to Vaagdevi Junior & Degree College</h2>
+        <p>Quality education, value-based learning. We offer Inter and UG courses, Defence training and coaching.</p>
+      </div>
+      <div class="image">
+        <img src="assets/vaagdevi.jpg" alt="Vaagdevi College" />
+      </div>
     </div>
-    <div class="image">
-      <img src="assets/vaagdevi.jpg" alt="Vaagdevi College" />
-    </div>
-  </div>
-</section>
+  </section>
 
+  <section id="about" class="content-section">
+    <h3>About Our College</h3>
+    <p>
+      Vaagdevi junior and Degree college was established in 2005. It's known for being the first college in our Boath constituency.
+      The college creation was driven by the motive of need for higher education in Boath constituency. High standard education was very unique and important for rural people to make their desires happen, accessibility and connection to the local culture.
+      The college has made significant contributions to the academics and educational development of the region and the district. Our Students have been settled in many professional fields like Engineers, Defence, Arts, Music, Commerce, Orientation, Lecturers, Teachers and excelling in various fields.
+      The faculty has been serving our college for very long time and their knowledge and understanding of children mentality is incredible. Faculty are friendly yet make children interactive, make them confident and let them know all spheres of their lives. Motivational classes along with digital classes makes child confident enough to crack any exam.
+      Vaagdevi junior and degree college establishment has changed lives of many people. We have 2 acres ground, 3 acres along with the building which is very special for our infrastructure.
+      We have served many students and the whole area of ours and now we want expand wings and serve you in defence sector too. We are very confident that the coaching provided will definitely give students a bright future.
+    </p>
+  </section>
 
-    <section id="about" class="content-section">
-      <h3>About Our College</h3>
-      <p>
-
-Vaagdevi  junior and Degree college was established in 2005 It's known for being the first college in our Boath constituency.
-The college creation was driven by  the motive of need for higher education in Boath constituency. High standard education was very unique and important for rural people to make their desires happen,accessibility  and connection to the local culture. 
-The college has made significant contributions to the academics and educational development of the region and the district. Our Students have been settled in many professional fields like Engineers,Defence , Arts, Music, Commerce, Orientation, Lecturers, Teachers and excelling in various fields. 
-The faculty has been serving our college for very long time and their Knowledge understanding of children mentality isincredible. Faculty are friendly yet make children interactive make them confident and let them know all spheres of their lives, motivational classes along with digital classes makes child confident enough to crack any exam. Vaagdevi  junior and degree  college establishment has changed lives of many people, We have 2  acres ground 3 acres along with the building which is very special for   our infrastructure.
-We have Served  many students and the whole area of ours and now we want expand wings and Serve you in defence sector too. We are very confident that the coaching provided will definitely give students a bright future.
-
-
-.</p>
-    </section>
-
-    <section id="courses" class="content-section">
-      <h3>Our Programs</h3>
-      <div class="program-grid">
-        <article class="program-card">
-<h2> <b>Degree Courses<b></h2>
-          <h4>B.Sc (Mathematics, Physics,Computer Science) <br><br>
-B.Sc (Mathematics, Physics,Chemistry)<br><br>
-
-B.SC(Botany, Zoology, Chemistry)<br><br>
-B.SC(Botany, Zoology, Computer Science)<br><br>
-B.SC(Food and Nutrition, Zoology, Chemistry)<br><br>
-B.SC(Food and Nutrition, Botany, Zoology)<BR><BR>
-BCom(Computer Appliactions)<br><br>BA(Histroty, Economics, Computer Applications)
-<br><br>BA(History, Economics, Political Science)
-</h4>
-        </article>
-        <article class="program-card">
+  <section id="courses" class="content-section">
+    <h3>Our Programs</h3>
+    <div class="program-grid">
+      <article class="program-card">
+        <h2><b>Degree Courses</b></h2>
+        <h4>
+          B.Sc (Mathematics, Physics, Computer Science)<br><br>
+          B.Sc (Mathematics, Physics, Chemistry)<br><br>
+          B.Sc (Botany, Zoology, Chemistry)<br><br>
+          B.Sc (Botany, Zoology, Computer Science)<br><br>
+          B.Sc (Food and Nutrition, Zoology, Chemistry)<br><br>
+          B.Sc (Food and Nutrition, Botany, Zoology)<br><br>
+          BCom (Computer Applications)<br><br>
+          BA (History, Economics, Computer Applications)<br><br>
+          BA (History, Economics, Political Science)
+        </h4>
+      </article>
+      <article class="program-card">
         <h2>Inter Courses</h2>
-          <p>Inter(Mathematics, Physics, Chemistry)<br><br>
-Inter(Botany, Physics, Chemistry)<br><br>
-Inter(civics, Economics, Commerce)</p>
+        <p>
+          Inter (Mathematics, Physics, Chemistry)<br><br>
+          Inter (Botany, Physics, Chemistry)<br><br>
+          Inter (Civics, Economics, Commerce)
+        </p>
+      </article>
+      <article class="program-card">
+        <h2>VAAGDEVI DEFENCE ACADEMY</h2>
+        <p>Physical Training<br><br>Theoretical Coaching</p>
+      </article>
+    </div>
+  </section>
 
-        </article>
-<br>
-
-        <article class="program-card">
-          <h2>VAAGDEVI DEFENCE ACADEMY</H2>
-          <p>Physical Training<br><br>
- Theoretical Coaching</p>
-        </article>
-      </div>
-    </section>
-
-
-<section id="Notice Board" class="hero-section">
-
-<aside class="program-content">
+  <section id="notice-board" class="content-section">
+    <aside class="program-content">
       <h4>Notice Board</h4>
-      <marquee direction="left"><ul>
-        <li><strong>Admissions:</strong> Apply for 2025 admissions. (placeholder)</li>
-        <li><strong>Exam Schedule:</strong> UG exams start from Sept 1, 2025.</li>
-        <li><strong>Placement Drive:</strong> Campus interviews on Aug 30, 2025.</li>
-      </ul></marquee>
+      <marquee direction="left">
+        <ul>
+          <li><strong>Admissions:</strong> Apply for 2025 admissions. (placeholder)</li>
+          <li><strong>Exam Schedule:</strong> UG exams start from Sept 1, 2025.</li>
+          <li><strong>Placement Drive:</strong> Campus interviews on Aug 30, 2025.</li>
+        </ul>
+      </marquee>
     </aside>
+  </section>
 
-
-
-<section id="faculty" class="content-section">
-  <h3>Faculty</h3>
-  <div class="faculty-grid">
-    
-    <!-- Faculty Member 1 -->
-    <div class="faculty-card">
-      <img src="assets/Rajanala Srinivas.jpg" alt="Rajanala Srinivas" />
-      <h4>Rajanala Srinivas</h4>
-      <p>Principal<br>
-Department of Chemistry</p>
-    </div>
-
-    <!-- Faculty Member 2 -->
-    <div class="faculty-card">
-      <img src="assets/Kummari Poshetty.jpg" alt="Kummari Poshetty" />
-      <h4>Kummari Poshetty</h4>
-      <p>Department of English</p>
-    </div>
-
-    <!-- Faculty Member 3 -->
-    <div class="faculty-card">
-      <img src="assets/Ch.Praveen Reddy.png" alt="Ch.Praveen Reddy" />
-      <h4>Ch.Praveen Reddy</h4>
-      <p>Depertment of Zoology</p>
-    </div>
-
-    <!-- Faculty Member 4 -->
-    <div class="faculty-card">
-      <img src="assets/T.Muthyam.jpg" alt="T.Muthyam" />
-      <h4>T.Muthyam</h4>
-      <p>Department of Economics</p>
-    </div>
-
- <!-- Faculty Member 5 -->
-    <div class="faculty-card">
-      <img src="assets/C.Sathish.jpg" alt="C.Sathish" />
-      <h4>C.Sathish</h4>
-      <p>Department of Physics</p>
-    </div>
-
- <!-- Faculty Member 6 -->
-    <div class="faculty-card">
-      <img src="assets/karthik.jpg" alt="karthik" />
-      <h4>Karthik Bonagiri</h4>
-      <p>Department of Computer Science</p>
-    </div>
-
-
-  </div>
-</section>
-
-
-
-
-    <section id="gallery" class="content-section">
-      <h3>Photo Gallery</h3>
-      <div class="gallery-grid">
-        <img src="assets/1.jpg" alt="Gallery image 1"/>
-        <img src="assets/2.jpg" alt="Gallery image 2" />
-        <img src="assets/3.jpg" alt="Gallery image 3" />
-        <img src="assets/4.jpg" alt="Gallery image 4" />
-	<img src="assets/5.jpg" alt="Gallery image 5" />
-        <img src="assets/6.jpg" alt="Gallery image 6" />
-        <img src="assets/7.jpg" alt="Gallery image 7" />
-	<img src="assets/8.jpg" alt="Gallery image 8" />
-        <img src="assets/9.jpg" alt="Gallery image 9" />
-        <img src="assets/10.jpg"alt="Gallery image 10" />
-        <!-- Add more images as needed -->
+  <section id="faculty" class="content-section">
+    <h3>Faculty</h3>
+    <div class="faculty-grid">
+      <div class="faculty-card">
+        <img src="assets/Rajanala Srinivas.jpg" alt="Rajanala Srinivas" />
+        <h4>Rajanala Srinivas</h4>
+        <p>Principal<br>Department of Chemistry</p>
       </div>
-    </section>
+      <div class="faculty-card">
+        <img src="assets/Kummari Poshetty.jpg" alt="Kummari Poshetty" />
+        <h4>Kummari Poshetty</h4>
+        <p>Department of English</p>
+      </div>
+      <div class="faculty-card">
+        <img src="assets/Ch.Praveen Reddy.png" alt="Ch.Praveen Reddy" />
+        <h4>Ch.Praveen Reddy</h4>
+        <p>Department of Zoology</p>
+      </div>
+      <div class="faculty-card">
+        <img src="assets/T.Muthyam.jpg" alt="T.Muthyam" />
+        <h4>T.Muthyam</h4>
+        <p>Department of Economics</p>
+      </div>
+      <div class="faculty-card">
+        <img src="assets/C.Sathish.jpg" alt="C.Sathish" />
+        <h4>C.Sathish</h4>
+        <p>Department of Physics</p>
+      </div>
+      <div class="faculty-card">
+        <img src="assets/karthik.jpg" alt="karthik" />
+        <h4>Karthik Bonagiri</h4>
+        <p>Department of Computer Science</p>
+      </div>
+    </div>
+  </section>
 
-    
+  <section id="gallery" class="content-section">
+    <h3>Photo Gallery</h3>
+    <div class="gallery-grid">
+      <img src="assets/1.jpg" alt="Gallery image 1" />
+      <img src="assets/2.jpg" alt="Gallery image 2" />
+      <img src="assets/3.jpg" alt="Gallery image 3" />
+      <img src="assets/4.jpg" alt="Gallery image 4" />
+      <img src="assets/5.jpg" alt="Gallery image 5" />
+      <img src="assets/6.jpg" alt="Gallery image 6" />
+      <img src="assets/7.jpg" alt="Gallery image 7" />
+      <img src="assets/8.jpg" alt="Gallery image 8" />
+      <img src="assets/9.jpg" alt="Gallery image 9" />
+      <img src="assets/10.jpg" alt="Gallery image 10" />
+    </div>
+  </section>
 
+  <section id="downloads" class="content-section">
+    <h3>Downloads</h3>
+    <p>
+      <a href="#">Prospectus (PDF)</a> • <a href="#">Syllabus (PDF)</a> • <a href="#">Admission Form</a>
+    </p>
+  </section>
 
-    <section id="downloads" class="content-section">
-      <h3>Downloads</h3>
-      <p>
-        <a href="#">Prospectus (PDF)</a> • <a href="#">Syllabus (PDF)</a> • <a href="#">Admission Form</a>
-      </p>
-    </section>
+  <section id="contact" class="content-section contact-section">
+    <h3>Contact & Enquiry</h3>
+    <form id="contact-form">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" required />
 
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" required />
 
+      <label for="message">Message:</label>
+      <textarea name="message" id="message" required></textarea>
 
+      <button type="submit">Send</button>
+    </form>
+    <div id="form-result" class="form-result" aria-live="polite"></div>
+  </section>
 
+</main>
 
-
-    <section id="contact" class="content-section contact-section">
-     <h3>Contact & Enquiry</h3>
-<form id="contact-form">
-  <label>Name:</label>
-  <input type="text" name="name" required>
-
-  <label>Email:</label>
-  <input type="email" name="email" required>
-
-  <label>Message:</label>
-  <textarea name="message" required></textarea>
-
-  <button type="submit">Send</button>
-</form>
+<footer class="site-footer">
+  <p>
+    © Vaagdevi Junior & Degree College — Address: Boath, Telangana — Phone: 9490172438<br />
+    Website Designed by Karthik Bonagiri - 9014895357
+  </p>
+</footer>
 
 <script>
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz78cUiknj1QP0vdkRr2xg-FV1crOeezJVvubN66v0fdyWU3-O_jzYmOrGGkzD1oCgK/exec';
+  // Mobile menu toggle
+  document.addEventListener("DOMContentLoaded", function () {
+    const navToggle = document.querySelector(".nav-toggle");
+    const mainNav = document.querySelector(".main-nav");
 
-  document.getElementById('contact-form').addEventListener('submit', e => {
+    navToggle.addEventListener("click", function () {
+      const expanded = navToggle.getAttribute("aria-expanded") === "true" || false;
+      navToggle.setAttribute("aria-expanded", !expanded);
+      mainNav.classList.toggle("active");
+    });
+  });
+
+  // Contact form submit
+  document.getElementById("contact-form").addEventListener("submit", function (e) {
     e.preventDefault();
-    
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
+
+    const result = document.getElementById("form-result");
+
+    if (!this.checkValidity()) {
+      this.reportValidity();
+      return;
+    }
+
+    const formData = {
+      timestamp: new Date().toISOString(),
+      name: this.name.value.trim(),
+      email: this.email.value.trim(),
+      message: this.message.value.trim(),
+    };
+
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz78cUiknj1QP0vdkRr2xg-FV1crOeezJVvubN66v0fdyWU3-O_jzYmOrGGkzD1oCgK/exec";
 
     fetch(SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json' }
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
     })
-    .then(res => res.json())
-    .then(response => alert('Form submitted successfully!'))
-    .catch(error => alert('Error: ' + error));
+      .then(() => {
+        result.textContent = "Message sent — thank you!";
+        this.reset();
+        setTimeout(() => {
+          result.textContent = "";
+        }, 5000);
+      })
+      .catch((error) => {
+        alert("Could not send form. Please check your script URL and deployment.");
+        console.error(error);
+      });
   });
 </script>
 
-
-
-      <div id="form-result" class="form-result" aria-live="polite"></div>
-    </section>
-  </main>
-
-
-
-
-  <footer class="site-footer">
-    <p>© Vaagdevi Junior & Degree College — Address: Boath, Telangana — Phone: 9490172438<br>
-Website Designed by Karthik Bonagiri-9014895357</p>
-  </footer>
-
-  <script src="js/script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-

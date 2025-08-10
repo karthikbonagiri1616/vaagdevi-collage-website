@@ -360,3 +360,47 @@ body {
     gap: 0.7rem;
   }
 }
+
+/* Hide hamburger by default on desktop */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #a9d1ff;
+  cursor: pointer;
+}
+
+/* On mobile, show hamburger and hide nav menu */
+@media (max-width: 600px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .main-nav ul {
+    display: none; /* Hide menu initially */
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 0;
+    width: 100%;
+    background: #004b87;
+    border-radius: 6px;
+    margin-top: 10px;
+  }
+
+  .main-nav ul.show {
+    display: flex; /* Show menu when toggled */
+  }
+
+  .main-nav a {
+    color: white;
+    padding: 12px 15px;
+    font-size: 1.1rem;
+    display: block;
+  }
+
+  .main-nav a:hover,
+  .main-nav a:focus {
+    background-color: #0077cc;
+  }
+}

@@ -42,5 +42,15 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
       result.textContent = "";
     }, 5000);
+    document.addEventListener("DOMContentLoaded", function () {
+  const navToggle = document.querySelector(".nav-toggle");
+  const mainNav = document.querySelector(".main-nav");
+
+  navToggle.addEventListener("click", function () {
+    mainNav.classList.toggle("active");
   });
 });
+
+  });
+});
+

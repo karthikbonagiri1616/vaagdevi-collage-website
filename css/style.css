@@ -386,6 +386,31 @@ body {
   object-fit: cover;  /* crops to fill container nicely */
   border-radius: 8px;
 }
+/* Main hero image responsiveness */
+.hero-section img, 
+.container > img {
+  width: 100%;
+  max-width: 1000px; /* max width for large screens */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px; /* optional rounded corners */
+}
+
+/* On small screens, reduce heading font size and padding */
+@media only screen and (max-width: 520px) {
+  .hero-section h2 {
+    font-size: 1.5rem;
+    padding: 0 10px;
+    text-align: center;
+  }
+  .hero-section p {
+    font-size: 1rem;
+    padding: 0 10px;
+    text-align: center;
+  }
+}
+
 
 
 

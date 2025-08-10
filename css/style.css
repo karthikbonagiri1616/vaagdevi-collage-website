@@ -443,4 +443,68 @@ body {
     margin: 10px 0;
   }
 }
+/* Base styles for navigation */
+.main-nav {
+  position: relative;
+}
+
+#nav-list {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+#nav-list a {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #0056a6;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+#nav-list a:hover {
+  background-color: #0056a6;
+  color: white;
+}
+
+/* Hamburger icon */
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #0056a6;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  #nav-list {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  #nav-list.active {
+    display: flex;
+  }
+
+  #nav-list a {
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
 

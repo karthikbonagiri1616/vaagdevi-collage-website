@@ -506,5 +506,57 @@ body {
     display: block;
   }
 }
+.nav-toggle {
+  display: none; /* hide by default */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.nav-toggle .hamburger {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #0077cc;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-toggle .hamburger::before,
+.nav-toggle .hamburger::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 3px;
+  background-color: #0077cc;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-toggle .hamburger::before {
+  top: -8px;
+}
+
+.nav-toggle .hamburger::after {
+  top: 8px;
+}
+
+/* Show toggle on small screens */
+@media (max-width: 700px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .main-nav {
+    display: none; /* hide menu initially */
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .main-nav.active {
+    display: flex; /* show menu when toggled */
+  }
+}
+
 
 

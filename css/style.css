@@ -472,6 +472,35 @@ body {
   }
 }
 
+.hero-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.hero-content .text {
+  flex: 1;
+}
+
+.hero-content .image {
+  flex: 1;
+}
+
+.hero-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* On mobile, stack vertically */
+@media (max-width: 600px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+
 
 
 

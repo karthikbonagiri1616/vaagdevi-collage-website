@@ -404,3 +404,43 @@ body {
     background-color: #0077cc;
   }
 }
+/* Hide nav on mobile by default */
+.main-nav {
+  display: flex;
+}
+
+.nav-toggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .main-nav {
+    display: none;
+    width: 100%;
+  }
+
+  .main-nav.active {
+    display: block;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .main-nav li {
+    margin: 10px 0;
+  }
+}
+

@@ -500,6 +500,43 @@ body {
   }
 }
 
+/* Basic menu styling */
+.main-nav ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem; /* default font size */
+  color: #0056a6;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.main-nav a:hover {
+  background-color: #0056a6;
+  color: white;
+}
+
+/* On small screens - reduce menu font size and stack vertically */
+@media (max-width: 600px) {
+  .main-nav ul {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .main-nav a {
+    font-size: 0.9rem; /* smaller font size */
+    padding: 8px 12px;
+  }
+}
+
 
 
 

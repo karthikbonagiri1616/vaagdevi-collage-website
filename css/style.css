@@ -380,5 +380,12 @@ body {
   margin: 0 auto;
   border-radius: 8px; /* optional: rounded corners */
 }
+.hero-section img {
+  width: 100%;
+  height: 300px;  /* or any fixed height */
+  object-fit: cover;  /* crops to fill container nicely */
+  border-radius: 8px;
+}
+
 
 

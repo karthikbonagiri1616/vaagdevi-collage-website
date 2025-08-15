@@ -1,45 +1,559 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vaagdevi Junior & Degree College, Boath</title>
-<link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vaagdevi Junior & Degree College — Boath, Adilabad</title>
+  <meta name="description" content="Vaagdevi Junior & Degree College — Inter & Degree programs, Defence Academy coaching. Boath, Adilabad." />
+  <style>
+    /* ---------- Base & Reset ---------- */
+    :root{
+      --blue-1:#0ea5e9; --blue-2:#2563eb; --nav-h:64px;
+      --card-radius:12px; --glass: rgba(255,255,255,0.06);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%; margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial; color:#0b1220; background:#f7fbff; -webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:1rem 1.25rem}
+
+    /* ---------- Header / Nav ---------- */
+    .site-header{
+      position:sticky; top:0; z-index:1100;
+      background:linear-gradient(90deg,var(--blue-1),var(--blue-2));
+      color:#fff; backdrop-filter: blur(6px); border-bottom:1px solid rgba(255,255,255,.12);
+    }
+    .header-inner{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);gap:1rem;max-width:1100px;margin:0 auto;padding:0 1.25rem}
+    .logo{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:inherit}
+    .logo img{height:48px;border-radius:8px;box-shadow:0 8px 26px rgba(2,6,23,.12)}
+    .college-name h1{margin:0;font-size:1rem;line-height:1.05}
+    .college-name p{margin:0;font-size:.78rem;opacity:.95}
+
+    .main-nav ul{display:flex;gap:.6rem;list-style:none;margin:0;padding:0}
+    .main-nav a{display:inline-block;padding:.45rem .7rem;border-radius:8px;color:#e6f6ff;text-decoration:none;font-weight:700;font-size:.95rem}
+    .main-nav a:hover,.main-nav a:focus{background:rgba(255,255,255,.12)}
+    .main-nav a.is-active{background:rgba(255,255,255,.22);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+
+    .nav-toggle{display:none;background:none;border:0;padding:.3rem;cursor:pointer}
+    .hamburger,.hamburger::before,.hamburger::after{width:28px;height:3px;background:#e0f7ff;display:block;border-radius:3px;position:relative}
+    .hamburger::before,.hamburger::after{content:"";position:absolute;left:0}
+    .hamburger::before{top:-8px}.hamburger::after{top:8px}
+
+    /* ---------- Hero ---------- */
+    .hero{
+      position:relative; min-height:62vh; display:flex; align-items:center;
+      background-image:url('assets/vaagdevi.jpg');
+      background-size:cover; background-position:center;
+      color:#fff; padding:2.25rem 0;
+    }
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(2,6,23,.45), rgba(2,6,23,.25));}
+    .hero .container{position:relative;z-index:2;display:grid;grid-template-columns:1fr 420px;gap:1.5rem;align-items:center}
+    .hero-text{padding:1.2rem;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));border-radius:12px;backdrop-filter:blur(6px)}
+    .hero .eyebrow{color:#dbeefd;font-weight:800;margin:0 0 .4rem}
+    .hero h2{margin:.15rem 0 .6rem;font-size:clamp(1.4rem,3vw,2.2rem);line-height:1.05}
+    .hero p{margin:0 0 1rem;color:#e6f9ff}
+    .btn{display:inline-block;padding:.6rem 1rem;border-radius:999px;font-weight:800;text-decoration:none;cursor:pointer}
+    .btn-primary{background:linear-gradient(135deg,var(--blue-1),var(--blue-2));color:#fff;box-shadow:0 10px 30px rgba(14,165,233,.14)}
+    .btn-outline{background:transparent;border:2px solid rgba(255,255,255,.12);color:#fff}
+
+    .hero-photo{display:block}
+    .hero-photo img{width:100%;height:320px;object-fit:cover;border-radius:12px;box-shadow:0 20px 50px rgba(2,6,23,.35)}
+
+    /* ---------- Content Sections ---------- */
+    main{padding:1.25rem 0}
+    .content-section{background:#fff;border-radius:14px;padding:1.25rem;margin:1.25rem 0;box-shadow:0 10px 30px rgba(2,6,23,.04);opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease}
+    .content-section.visible{opacity:1;transform:translateY(0)}
+    .content-section h3{margin:0 0 .65rem;color:#0f172a}
+
+    /* Programs */
+    .program-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+    .program-card{padding:1rem;border-radius:12px;background:linear-gradient(180deg,#0ea5e9,#2563eb);color:#fff;box-shadow:0 12px 30px rgba(37,99,235,.18)}
+    .program-card h4{margin:0 0 .5rem;font-size:1.05rem}
+    .program-list{margin:0;padding-left:1rem}
+    .program-list li{margin:.28rem 0}
+
+    /* Notice ticker */
+    .ticker{overflow:hidden;border-radius:10px;padding:.4rem;border:1px solid #e6f3fb;background:#f0fbff}
+    .ticker-track{display:flex;gap:2.2rem;align-items:center;animation:scrollTicker 20s linear infinite;white-space:nowrap}
+    .ticker-item{font-weight:700;color:#075985}
+    @keyframes scrollTicker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    /* Faculty */
+    .faculty-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem}
+    .faculty-card{text-align:center;padding:.75rem;border-radius:12px;background:#f7fbff;box-shadow:0 12px 30px rgba(2,6,23,.04)}
+    .faculty-card img{height:170px;object-fit:cover;border-radius:10px;box-shadow:0 8px 26px rgba(14,165,233,.12)}
+    .faculty-card h4{margin:.6rem 0 .2rem}
+    .faculty-card p{margin:0;color:#334155}
+
+    /* Gallery */
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.6rem}
+    .gallery-grid img{height:100px;object-fit:cover;border-radius:10px;box-shadow:0 8px 24px rgba(2,6,23,.04);transition:transform .12s ease;cursor:pointer}
+    .gallery-grid img:hover{transform:scale(1.03)}
+
+    /* Downloads */
+    .downloads .chip{display:inline-block;background:#e0f2fe;color:#075985;padding:.45rem .8rem;border-radius:999px;font-weight:800;text-decoration:none;margin-right:.5rem}
+
+    /* Contact */
+    .contact-form{max-width:520px;display:grid;gap:.7rem}
+    .contact-form input,.contact-form textarea{padding:.6rem;border-radius:8px;border:1px solid #cbd5e1;font-size:1rem}
+    .contact-form button{background:linear-gradient(135deg,#0ea5e9,#2563eb);color:white;padding:.7rem;border:0;border-radius:10px;font-weight:800;cursor:pointer}
+
+    /* Footer */
+    .site-footer{padding:1.2rem 0;background:linear-gradient(90deg,var(--blue-1),var(--blue-2));color:#fff;border-top-left-radius:12px;border-top-right-radius:12px;margin-top:1rem}
+    .footer-grid{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between}
+    .footer-links a{display:inline-block;color:#e6f9ff;text-decoration:none;margin-right:.6rem;font-weight:700}
+
+    /* Floating quick buttons */
+    .quick-buttons{position:fixed;right:16px;bottom:16px;display:flex;flex-direction:column;gap:.6rem;z-index:1400}
+    .quick-btn{width:48px;height:48px;border-radius:999px;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(2,6,23,.16);text-decoration:none;font-weight:800}
+    .quick-btn.call{background:#0ea5e9}
+    .quick-btn small{display:none}
+
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,.8);visibility:hidden;opacity:0;transition:opacity .18s,visibility .18s;z-index:1500}
+    .lightbox.show{visibility:visible;opacity:1}
+    .lightbox img{max-width:92%;max-height:86%;border-radius:8px}
+    .lightbox .close{position:absolute;top:18px;right:18px;background:transparent;border:0;color:#fff;font-size:2rem;cursor:pointer}
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:980px){ .hero .container{grid-template-columns:1fr} .hero-photo{display:none} }
+    @media (max-width:760px){
+      .main-nav{display:none}
+      .nav-toggle{display:block}
+      .main-nav.active{display:block;position:absolute;top:var(--nav-h);left:0;right:0;background:linear-gradient(90deg,var(--blue-1),var(--blue-2));padding:.6rem;box-shadow:0 6px 20px rgba(2,6,23,.12)}
+      .main-nav ul{flex-direction:column;gap:.4rem}
+      .hero{min-height:56vh}
+      .hero-text{padding:.9rem}
+      .college-name h1{font-size:.95rem}
+      .hero-photo img{height:220px}
+      .quick-btn{width:46px;height:46px}
+      .quick-btn small{display:block;font-size:10px;margin-left:6px}
+    }
+    @media (max-width:420px){
+      .gallery-grid img{height:82px}
+      .faculty-card img{height:140px}
+      .college-name p{display:none}
+    }
+  </style>
 </head>
 <body>
-<header>
-  <h1>Vaagdevi Junior & Degree College, Boath</h1>
-  <nav>
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">About</a>
-    <a href="courses.html">Courses</a>
-    <a href="faculty.html">Faculty</a>
-    <a href="management.html">Management</a>
-    <a href="notice.html">Notice Board</a>
-    <a href="nss.html">NSS Activities</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
 
-<div class="container">
-  <h2>Welcome to Vaagdevi Junior & Degree College, Boath</h2>
-  <p>We are dedicated to academic excellence and holistic development for all our students.</p>
-  
-  <h3>Gallery Preview</h3>
-  <div class="gallery-preview">
-    <img src="https://picsum.photos/300/200?random=101" onclick="window.location='gallery.html'">
-    <img src="https://picsum.photos/300/200?random=102" onclick="window.location='gallery.html'">
-    <img src="https://picsum.photos/300/200?random=103" onclick="window.location='gallery.html'">
-    <img src="https://picsum.photos/300/200?random=104" onclick="window.location='gallery.html'">
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="#home" class="logo" aria-label="Go to home">
+        <img src="assets/logo.jpg" alt="Vaagdevi College logo" />
+        <div class="college-name">
+          <h1>Vaagdevi Junior & Degree College</h1>
+          <p>Boath, Dist: Adilabad — Affiliated to Kakatiya University</p>
+        </div>
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+
+      <nav class="main-nav" id="primary-navigation" role="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#courses" class="nav-link">Courses</a></li>
+          <li><a href="#faculty" class="nav-link">Faculty</a></li>
+          <li><a href="#notice-board" class="nav-link">Notice</a></li>
+          <li><a href="#gallery" class="nav-link">Gallery</a></li>
+          <li><a href="#downloads" class="nav-link">Downloads</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="hero" role="region" aria-label="Welcome">
+    <div class="container">
+      <div class="hero-text">
+        <p class="eyebrow">Since 2005 • Boath</p>
+        <h2>Empowering Rural Education with Excellence</h2>
+        <p>Quality education, value-based learning. We offer Inter & UG courses, Defence training, and coaching to prepare students for a bright future.</p>
+        <p style="margin-top:1rem">
+          <a class="btn btn-primary" href="#courses">Explore Courses</a>
+          <a class="btn btn-outline" href="#about" style="margin-left:.6rem">Learn More</a>
+        </p>
+      </div>
+
+      <div class="hero-photo" aria-hidden="true">
+        <img src="assets/vaagdevi.jpg" alt="Vaagdevi College campus" />
+      </div>
+    </div>
+  </section>
+
+  <main class="container" id="content" role="main">
+
+    <!-- ABOUT -->
+    <section id="about" class="content-section" aria-labelledby="about-heading">
+      <h3 id="about-heading">About Our College</h3>
+      <p>
+        Vaagdevi Junior & Degree College was established in 2005 and is known for being the first college in the Boath constituency.
+        Our mission is to make higher education accessible to rural students while staying connected to local culture and values.
+        Our students have gone on to careers in engineering, defence, arts, commerce, teaching and more.
+      </p>
+      <p>
+        Our faculty are experienced and approachable — we combine motivational classes with digital learning to help students succeed in exams and careers.
+        Our campus includes academic buildings and 2–3 acres of grounds supporting sports and practical training.
+      </p>
+    </section>
+
+    <!-- COURSES -->
+    <section id="courses" class="content-section" aria-labelledby="courses-heading">
+      <h3 id="courses-heading">Our Programs</h3>
+      <div class="program-grid">
+        <article class="program-card" aria-labelledby="deg-title">
+          <h4 id="deg-title">Degree Courses</h4>
+          <ul class="program-list">
+            <li>B.Sc — Mathematics, Physics, Computer Science</li>
+            <li>B.Sc — Mathematics, Physics, Chemistry</li>
+            <li>B.Sc — Botany, Zoology, Chemistry</li>
+            <li>B.Com — Computer Applications</li>
+            <li>BA — History, Economics, Political Science</li>
+          </ul>
+        </article>
+
+        <article class="program-card" aria-labelledby="inter-title">
+          <h4 id="inter-title">Intermediate Courses</h4>
+          <ul class="program-list">
+            <li>Inter MPC (Maths, Physics, Chemistry)</li>
+            <li>Inter BPC (Botany, Zoology, Chemistry)</li>
+            <li>Inter CEC (Civics, Economics, Commerce)</li>
+          </ul>
+        </article>
+
+        <article class="program-card" aria-labelledby="def-title">
+          <h4 id="def-title">Vaagdevi Defence Academy</h4>
+          <ul class="program-list">
+            <li>Physical Training</li>
+            <li>Theoretical Coaching</li>
+            <li>Mock Tests & Exam Preparation</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- NOTICE BOARD (Ticker) -->
+    <section id="notice-board" class="content-section" aria-labelledby="notice-heading">
+      <h3 id="notice-heading">Notice Board</h3>
+      <div class="ticker" role="region" aria-live="polite" aria-atomic="true">
+        <div class="ticker-track" tabindex="0" aria-label="Latest notices">
+          <div class="ticker-item"><strong>Admissions:</strong> Apply for 2025 admissions. (placeholder)</div>
+          <div class="ticker-item"><strong>Exam Schedule:</strong> UG exams start from Sept 1, 2025.</div>
+          <div class="ticker-item"><strong>Placement Drive:</strong> Campus interviews on Aug 30, 2025.</div>
+          <!-- duplicate items for seamless loop -->
+          <div class="ticker-item"><strong>Admissions:</strong> Apply for 2025 admissions. (placeholder)</div>
+          <div class="ticker-item"><strong>Exam Schedule:</strong> UG exams start from Sept 1, 2025.</div>
+          <div class="ticker-item"><strong>Placement Drive:</strong> Campus interviews on Aug 30, 2025.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FACULTY -->
+    <section id="faculty" class="content-section" aria-labelledby="faculty-heading">
+      <h3 id="faculty-heading">Faculty</h3>
+      <div class="faculty-grid">
+        <!-- keep your faculty photos & names as-is -->
+        <div class="faculty-card">
+          <img src="assets/SRINU (2).jpg" alt="Rajanala Srinivas" />
+          <h4>Rajanala Srinivas</h4>
+          <p>Principal • Department of Chemistry</p>
+        </div>
+
+        <div class="faculty-card">
+          <img src="assets/POSHETTY.jpg" alt="Kummari Poshetty" />
+          <h4>Kummari Poshetty</h4>
+          <p>Department of English</p>
+        </div>
+
+        <div class="faculty-card">
+          <img src="assets/PRAVEEN.jpg" alt="Ch. Praveen Reddy" />
+          <h4>Ch. Praveen Reddy</h4>
+          <p>Department of Zoology</p>
+        </div>
+
+        <div class="faculty-card">
+          <img src="assets/MUTHYAM.jpg" alt="T. Muthyam" />
+          <h4>T. Muthyam</h4>
+          <p>Department of Economics</p>
+        </div>
+
+        <div class="faculty-card">
+          <img src="assets/SATHISH.jpg" alt="C. Sathish" />
+          <h4>C. Sathish</h4>
+          <p>Department of Physics</p>
+        </div>
+
+        <div class="faculty-card">
+          <img src="assets/KARTHIK BONAGIRI.jpg" alt="Karthik Bonagiri" />
+          <h4>Karthik Bonagiri</h4>
+          <p>Department of Computer Science</p>
+        </div>
+
+        <div class="faculty-card">
+          <img src="assets/PRASAD.jpg" alt="Adepu Prasad" />
+          <h4>Adepu Prasad</h4>
+          <p>Department of Commerce</p>
+        </div>
+
+        <div class="faculty-card">
+          <img src="assets/RAJESHWAR.jpg" alt="A. Rajeshwar" />
+          <h4>A. Rajeshwar</h4>
+          <p>Department of Telugu</p>
+        </div>
+
+        <div class="faculty-card">
+          <img src="assets/Pandari.jpg" alt="N. Pandari" />
+          <h4>N. Pandari</h4>
+          <p>Department of Botany</p>
+        </div>
+
+        <div class="faculty-card">
+          <img src="assets/DATHU.jpg" alt="K. Dathu" />
+          <h4>K. Dathu</h4>
+          <p>Department of Mathematics</p>
+        </div>
+
+        <div class="faculty-card">
+          <img src="assets/MALLIKA.jpg" alt="M. Mallika" />
+          <h4>M. Mallika</h4>
+          <p>Department of Hindi</p>
+        </div>
+
+        <div class="faculty-card">
+          <img src="assets/HARISH.jpg" alt="A. Harish Reddy" />
+          <h4>A. Harish Reddy</h4>
+          <p>Department of Chemistry</p>
+        </div>
+
+        <div class="faculty-card">
+          <img src="assets/SURESH.jpg" alt="Suresh" />
+          <h4>Suresh</h4>
+          <p>Department of Zoology</p>
+        </div>
+
+        <div class="faculty-card">
+          <img src="assets/prashanth.png" alt="Boddu Prashanth" />
+          <h4>Boddu Prashanth</h4>
+          <p>Department of Mathematics</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="content-section" aria-labelledby="gallery-heading">
+      <h3 id="gallery-heading">Photo Gallery</h3>
+      <div class="gallery-grid">
+        <img class="gallery-item" src="assets/1.jpg" alt="Gallery image 1" data-full="assets/1.jpg" />
+        <img class="gallery-item" src="assets/2.jpg" alt="Gallery image 2" data-full="assets/2.jpg" />
+        <img class="gallery-item" src="assets/3.jpg" alt="Gallery image 3" data-full="assets/3.jpg" />
+        <img class="gallery-item" src="assets/4.jpg" alt="Gallery image 4" data-full="assets/4.jpg" />
+        <img class="gallery-item" src="assets/5.jpg" alt="Gallery image 5" data-full="assets/5.jpg" />
+        <img class="gallery-item" src="assets/6.jpg" alt="Gallery image 6" data-full="assets/6.jpg" />
+        <img class="gallery-item" src="assets/7.jpg" alt="Gallery image 7" data-full="assets/7.jpg" />
+        <img class="gallery-item" src="assets/8.jpg" alt="Gallery image 8" data-full="assets/8.jpg" />
+        <img class="gallery-item" src="assets/9.jpg" alt="Gallery image 9" data-full="assets/9.jpg" />
+        <img class="gallery-item" src="assets/10.jpg" alt="Gallery image 10" data-full="assets/10.jpg" />
+      </div>
+    </section>
+
+    <!-- DOWNLOADS -->
+    <section id="downloads" class="content-section" aria-labelledby="downloads-heading">
+      <h3 id="downloads-heading">Downloads</h3>
+      <p class="downloads">
+        <a class="chip" href="#" aria-label="Prospectus PDF">Prospectus (PDF)</a>
+        <a class="chip" href="#" aria-label="Syllabus PDF">Syllabus (PDF)</a>
+        <a class="chip" href="#" aria-label="Admission form">Admission Form</a>
+      </p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="content-section" aria-labelledby="contact-heading">
+      <h3 id="contact-heading">Contact & Enquiry</h3>
+
+      <form id="contact-form" class="contact-form" novalidate>
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Send</button>
+      </form>
+
+      <div id="form-result" class="form-result" aria-live="polite"></div>
+    </section>
+
+  </main>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
+    <button class="close" aria-label="Close image">×</button>
+    <img id="lightbox-img" src="" alt="" />
   </div>
-  <p style="margin-top:15px;">
-    <a href="gallery.html" class="btn">View Full Gallery</a>
-  </p>
-</div>
 
-<footer>
-  <p>&copy; 2025 Vaagdevi Junior & Degree College, Boath. All Rights Reserved.</p>
-</footer>
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-grid">
+      <div>
+        <strong>Vaagdevi Junior & Degree College</strong><br />
+        Boath, Telangana • Phone: <a href="tel:+919490172438" style="color:inherit;text-decoration:underline">9490172438</a>
+      </div>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#courses">Courses</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div>
+        <a href="#" aria-label="Facebook (placeholder)" style="color:inherit;text-decoration:none;margin-right:.5rem">Facebook</a>
+        <a href="#" aria-label="Instagram (placeholder)" style="color:inherit;text-decoration:none">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Quick Buttons -->
+  <div class="quick-buttons" aria-hidden="false">
+    <a class="quick-btn whatsapp" href="https://wa.me/919490172438" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <!-- simple icon -->
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M.057 24L1.72 17.525C.4 14.3 0 11.03 0 7.705 0 3.45 3.455 0 7.715 0 12.135 0 15.588 3.455 15.588 7.705c0 4.25-3.453 7.706-7.87 7.706-1.626 0-3.15-.474-4.444-1.292L.057 24z" fill="#25D366"/></svg>
+    </a>
+    <a class="quick-btn call" href="tel:+919490172438" aria-label="Call">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.05-.24 11.36 11.36 0 003.55.57 1 1 0 011 1v3.8a1 1 0 01-1 1A19 19 0 013 5a1 1 0 011-1h3.8a1 1 0 011 1 11.36 11.36 0 00.57 3.55 1 1 0 01-.24 1.05l-2.51 2.19z" fill="#ffffff"/></svg>
+    </a>
+  </div>
+
+  <!-- Inline JS -->
+  <script>
+    // --- Mobile nav toggle + close on link click
+    (function(){
+      const navToggle = document.querySelector('.nav-toggle');
+      const mainNav = document.querySelector('.main-nav');
+      navToggle && navToggle.addEventListener('click', () => {
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!expanded));
+        mainNav.classList.toggle('active');
+      });
+      document.querySelectorAll('.main-nav a').forEach(a => {
+        a.addEventListener('click', () => {
+          if(window.innerWidth <= 760 && mainNav.classList.contains('active')){
+            mainNav.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    })();
+
+    // --- Smooth scroll for internal links
+    (function(){
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e){
+          const href = this.getAttribute('href');
+          if(href.length > 1 && document.querySelector(href)){
+            e.preventDefault();
+            document.querySelector(href).scrollIntoView({behavior:'smooth', block:'start'});
+          }
+        });
+      });
+    })();
+
+    // --- IntersectionObserver for fade-in sections & active nav link
+    (function(){
+      const sections = document.querySelectorAll('main section[id]');
+      const options = { root:null, rootMargin:'0px 0px -40% 0px', threshold:0 };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          // fade-in
+          if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+          // active nav
+          if(entry.isIntersecting){
+            document.querySelectorAll('.main-nav a').forEach(a=>a.classList.remove('is-active'));
+            const id = entry.target.id;
+            const link = document.querySelector('.main-nav a[href="#'+id+'"]');
+            if(link) link.classList.add('is-active');
+          }
+        });
+      }, options);
+      sections.forEach(s => observer.observe(s));
+    })();
+
+    // --- Ticker pause on hover/focus for accessibility
+    (function(){
+      const track = document.querySelector('.ticker-track');
+      if(!track) return;
+      track.addEventListener('mouseenter', ()=> track.style.animationPlayState = 'paused');
+      track.addEventListener('mouseleave', ()=> track.style.animationPlayState = 'running');
+      track.addEventListener('focusin', ()=> track.style.animationPlayState = 'paused');
+      track.addEventListener('focusout', ()=> track.style.animationPlayState = 'running');
+    })();
+
+    // --- Lightbox for gallery
+    (function(){
+      const items = document.querySelectorAll('.gallery-item');
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      const lbClose = document.querySelector('.lightbox .close');
+
+      items.forEach(img => {
+        img.addEventListener('click', ()=> {
+          const src = img.dataset.full || img.src;
+          lbImg.src = src;
+          lbImg.alt = img.alt || '';
+          lb.classList.add('show');
+          lb.setAttribute('aria-hidden','false');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+      function closeLB(){
+        lb.classList.remove('show');
+        lb.setAttribute('aria-hidden','true');
+        lbImg.src = '';
+        document.body.style.overflow = '';
+      }
+      lbClose.addEventListener('click', closeLB);
+      lb.addEventListener('click', (e)=> { if(e.target === lb) closeLB(); });
+      document.addEventListener('keydown', (e)=> { if(e.key === 'Escape' && lb.classList.contains('show')) closeLB(); });
+    })();
+
+    // --- Contact form submit (keeps your Apps Script URL)
+    (function(){
+      const form = document.getElementById('contact-form');
+      if(!form) return;
+      const result = document.getElementById('form-result');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        if(!form.checkValidity()){ form.reportValidity(); return; }
+        const payload = {
+          timestamp: new Date().toISOString(),
+          name: form.name.value.trim(),
+          email: form.email.value.trim(),
+          message: form.message.value.trim()
+        };
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz78cUiknj1QP0vdkRr2xg-FV1crOeezJVvubN66v0fdyWU3-O_jzYmOrGGkzD1oCgK/exec";
+        fetch(SCRIPT_URL, {
+          method:'POST',
+          mode:'no-cors',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify(payload)
+        }).then(()=>{
+          result.textContent = "Message sent — thank you!";
+          result.style.color = "#047857";
+          form.reset();
+          setTimeout(()=> result.textContent = '', 5000);
+        }).catch(err=>{
+          alert("Could not send form. Please check your script URL and deployment.");
+          console.error(err);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
